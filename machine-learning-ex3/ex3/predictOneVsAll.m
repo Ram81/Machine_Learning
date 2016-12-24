@@ -30,6 +30,13 @@ X = [ones(m, 1) X];
 %       for each row.
 %       
 
+for i =1:m
+	RX=repmat(X(i,:),num_labels,1);
+	RX=RX.*all_theta;
+	SX=sum(RX,2); 
+	[val,index]=max(SX);
+	p(i)=index
+end
 
 
 
