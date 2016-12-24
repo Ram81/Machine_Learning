@@ -32,9 +32,7 @@ z3=a2 * Theta2';
 
 a3=sigmoid(z3);
 
-[val,index]=max(a3,[],2);
 
-p=index;
 
 
 
