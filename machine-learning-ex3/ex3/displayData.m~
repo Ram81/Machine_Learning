@@ -12,15 +12,23 @@ end
 % Gray Image
 colormap(gray);
 
+disp(example_width);
+
 % Compute rows, cols
 [m n] = size(X);
 
+disp(m);disp(n);
 
 example_height = (n / example_width);
+
+disp(example_height);
 
 % Compute number of items to display
 display_rows = floor(sqrt(m));
 display_cols = ceil(m / display_rows);
+
+disp(display_rows);
+disp(display_cols);
 
 % Between images padding
 pad = 1;
