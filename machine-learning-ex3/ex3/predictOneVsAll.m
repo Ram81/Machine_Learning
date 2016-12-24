@@ -35,7 +35,7 @@ for i =1:m
 	RX=RX.*all_theta;
 	SX=sum(RX,2); 
 	[val,index]=max(SX);
-	p(i)=index
+	p(i)=index;
 end
 
 
