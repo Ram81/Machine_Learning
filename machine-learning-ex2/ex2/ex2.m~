@@ -51,7 +51,7 @@ pause;
 
 %% ============ Part 2: Compute Cost and Gradient ============
 %  In this part of the exercise, you will implement the cost and gradient
-%  for logistic regression. You neeed to complete the code in 
+%  for logistic regression. You need to complete the code in 
 %  costFunction.m
 
 %  Setup the data matrix appropriately, and add ones for the intercept term
@@ -127,6 +127,8 @@ fprintf(['For a student with scores 45 and 85, we predict an admission ' ...
 
 % Compute accuracy on our training set
 p = predict(theta, X);
+
+disp(size(y));
 
 fprintf('Train Accuracy: %f\n', mean(double(p == y)) * 100);
 

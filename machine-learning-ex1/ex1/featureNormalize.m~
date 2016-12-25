@@ -37,6 +37,8 @@ for i=1:cols,
 	sigma(:,i)=sdev;
 	X_norm(:,i)=X_norm(:,i).-mu(:,i);
 	X_norm(:,i)=X_norm(:,i)./sigma(:,i);
+	disp(mu(:,i));
+	disp(sigma(:,i));
 end;
 
 

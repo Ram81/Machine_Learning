@@ -39,6 +39,7 @@ X = data(:, 1:2);
 y = data(:, 3);
 m = length(y);
 
+
 % Print out some data points
 fprintf('First 10 examples from the dataset: \n');
 fprintf(' x = [%.0f %.0f], y = %.0f \n', [X(1:10,:) y(1:10,:)]');
@@ -110,7 +111,6 @@ normBedroom=(3-mu)/sigma;
 normInput=[1,normSqrFeet,normBedroom];
 
 price=normInput*theta;
-
 
 % ============================================================
 
