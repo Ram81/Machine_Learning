@@ -80,7 +80,9 @@ for i = 1:m
 
     pred = predict(Theta1, Theta2, X(rp(i),:));
     fprintf('\nNeural Network Prediction: %d (digit %d)\n', pred, mod(pred, 10));
-    
+
+    disp(size(pred));
+
     % Pause
     fprintf('Program paused. Press enter to continue.\n');
     pause;
