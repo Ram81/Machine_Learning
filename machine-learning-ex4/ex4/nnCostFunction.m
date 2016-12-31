@@ -21,7 +21,6 @@ Theta1 = reshape(nn_params(1:hidden_layer_size * (input_layer_size + 1)), ...
 
 Theta2 = reshape(nn_params((1 + (hidden_layer_size * (input_layer_size + 1))):end), ...
                  num_labels, (hidden_layer_size + 1));
-
 % Setup some useful variables
 m = size(X, 1);
          
@@ -62,21 +61,60 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+# Part 1
+
+K=num_labels;
+
+X=[ones(m,1) X];
+
+for i = 1:m
+
+	X_i = X(i,:);	
+	
+	h_Xi = sigmoid( [1 sigmoid(X_i*Theta1')] * Theta2');
+
+	y_i=zeros(1,K);
+	y_i(y(i))=1;
+	
+	J = J + sum(-1 * y_i .*log(h_Xi) - (1-y_i) .*log(1 - h_Xi) );
+end
+
+J=1/m * J;
+
+J = J + (lambda/(2*m)) * (sum(sumsq( Theta1(:,2:input_layer_size+1) )) + sum(sumsq(Theta2(:,2:hidden_layer_size+1))) );
 
 
+#Part 2
 
+delta_accum_1=zeros(size(Theta1));
+delta_accum_2=zeros(size(Theta2));
 
+for i=1:m
 
+	a1 = X(i,:);
+	z2=a1*Theta1';
+	a2=[1 sigmoid(z2)];
+	
+	z3=a2*Theta2';
+	a3=sigmoid(z3);
+	
+	y_i=zeros(1,K);
+	y_i(y(i))=1;
+	
+	delta_3 = a3 - y_i;	
+	delta_2 = delta_3 * Theta2 .* sigmoidGradient([1 z2]);
 
+	delta_accum_2 = delta_accum_2 + delta_3' * a2;
+	delta_accum_1 = delta_accum_1 + delta_2(2:end)' * a1; 
+end
 
+Theta1_grad = 1/m * delta_accum_1;
+Theta2_grad = 1/m * delta_accum_2;
 
+#Part 3
 
-
-
-
-
-
-
+Theta1_grad(:,2:input_layer_size+1) = Theta1_grad(:,2:input_layer_size+1) + (lambda/m) * Theta1(:,2:input_layer_size+1);
+Theta2_grad(:,2:hidden_layer_size+1) = Theta2_grad(:,2:hidden_layer_size+1) + (lambda/m) * Theta2(:,2:hidden_layer_size+1);
 
 
 
