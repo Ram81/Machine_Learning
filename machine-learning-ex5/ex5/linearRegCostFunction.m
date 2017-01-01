@@ -25,7 +25,9 @@ sqrErr = (h_X - y).^2;
 
 J = (1/(2*m)) * sum(sqrErr) + (lambda/(2*m)) * sum( theta(2:end).*theta(2:end) );
 
+theta_reg = [0;theta(2:end,:);];
 
+grad = (1/m) * (X' * (h_X-y)) + (lambda/m) * theta_reg;
 
 
 
