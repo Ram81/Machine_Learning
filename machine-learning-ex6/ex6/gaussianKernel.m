@@ -16,6 +16,10 @@ sim = 0;
 %
 %
 
+norm_x = (x1 .- x2).^2;
+sigma_sqr=2*(sigma^2);
+
+sim = exp( -( sum(norm_x) ./sigma_sqr) );
 
 
 
