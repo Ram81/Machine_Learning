@@ -22,10 +22,25 @@ sigma = 0.3;
 %  Note: You can compute the prediction error using 
 %        mean(double(predictions ~= yval))
 %
+res=eye(64,3);
+vec=[0.01,0.03,0.1,0.3,1,3,10,30];
+i=0;
+for C_test=vec
+	for sigma_test=vec
+		i=i+1;
+		model=svmTrain(X,y,C_test,@(x1,x2) gaussianKernel(x1,x2,sigma_test));
+		predictions=svmPredict(model,Xval);
+		prediction_err=mean(double(predictions~=yval));
+		res(i,:)=[C_test,sigma_test,prediction_err];
+	end
+end
 
+sorted_res=sortrows(res,3);
 
-
-
+C=sorted_res(1,1);
+sigma=sorted_res(1,2);
+		
+			
 
 
 
