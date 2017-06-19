@@ -1,0 +1,21 @@
+10 epochs
+5 100: 2.805, 2.824
+50 10: 3.013, 3.026
+50 200: 2.536
+100 5: 3.233, 3.238
+
+5 epochs
+Momentum 0.0 : 3.980 , 3.939
+Momentum 0.5 : 3.326, 3.252
+Momentum 0.9 : 2.718, 2.714
+
+2-> 2.536
+3->Cross Entropy on the training and validation set decreases very slowly.
+4->5.521
+5->Model A
+6->Model B
+7->Model C
+8-> Model C
+9-> Momentum 0.9
+10->week, night
+11->
