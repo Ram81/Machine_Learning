@@ -155,7 +155,7 @@ class TwoLayerNet(object):
     - reg: Scalar giving regularization strength.
     - num_iters: Number of steps to take when optimizing.
     - batch_size: Number of training examples to use per step.
-    - verbose: boolean; if true print progress during optimization.
+    - verbose: boolean; if true print progress during optimization
     """
     num_train = X.shape[0]
     iterations_per_epoch = max(num_train / batch_size, 1)
