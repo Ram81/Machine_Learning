@@ -110,7 +110,14 @@ def svm_loss_vectorized(W, X, y, reg):
   # to reuse some of the intermediate values that you used to compute the     #
   # loss.                                                                     #
   #############################################################################
-  pass
+  num_classes = W.shape[1]
+  
+  incorrect_count = np.sum(margin > 0, axis=1)
+  
+  for i in xrange(num_classes):
+    wj = np.sum(X[margin[:, i] > 0], axis=0)
+    wy = np.sum(-incorrect_count[y==i][:, np.newaxis] * X[y==i], axis=0)
+    dW[:,i] = wj + wy
   #############################################################################
   #                             END OF YOUR CODE                              #
   #############################################################################
