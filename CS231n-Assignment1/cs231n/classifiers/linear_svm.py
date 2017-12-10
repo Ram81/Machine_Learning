@@ -112,12 +112,23 @@ def svm_loss_vectorized(W, X, y, reg):
   #############################################################################
   num_classes = W.shape[1]
   
-  incorrect_count = np.sum(margin > 0, axis=1)
+  #incorrect_count = np.sum(margin > 0, axis=1)
   
-  for i in xrange(num_classes):
-    wj = np.sum(X[margin[:, i] > 0], axis=0)
-    wy = np.sum(-incorrect_count[y==i][:, np.newaxis] * X[y==i], axis=0)
-    dW[:,i] = wj + wy
+  #for i in xrange(num_classes):
+  #  wj = np.sum(X[margin[:, i] > 0], axis=0)
+  #  wy = np.sum(-incorrect_count[y==i][:, np.newaxis] * X[y==i], axis=0)
+  #  dW[:,i] = wj + wy
+  
+  X_mask = np.zeros(margin.shape)
+  
+  X_mask[margin > 0] = 1
+  incorrect_count = np.sum(X_mask, axis=1)
+  
+  X_mask[np.arange(num_train), y] = -1 * incorrect_count
+  
+  dW = X.T.dot(X_mask)
+  dW /= num_train
+  dW += reg*W
   #############################################################################
   #                             END OF YOUR CODE                              #
   #############################################################################
